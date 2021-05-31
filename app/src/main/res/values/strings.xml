@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Advenegro</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="admin_main">Welcome:</string>
+    <string name="button_create">Create</string>
+    <string name="add_new">Add New</string>
+    <string name="button_chooseImage">Choose image</string>
+    <string name="title">Title</string>
+    <string name="editTextLocation">Location</string>
+    <string name="editTextDescription">Short description</string>
+    <string name="editTextAbout">About</string>
+    <string name="editTextLongitude">Longitude</string>
+    <string name="editTextLatitude">Latitude</string>
+    <string name="Search">Search</string>
+
+</resources>

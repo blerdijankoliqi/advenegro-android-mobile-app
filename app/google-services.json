@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "638674378016",
+    "project_id": "adve-64813",
+    "storage_bucket": "adve-64813.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:638674378016:android:cbafcdaca8c7108b0acb45",
+        "android_client_info": {
+          "package_name": "com.example.advenegro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "638674378016-jk6omr5j0a24gof8i5ddbf0ega8up0bj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_bdztDwvwgjrvs909tqVp4GMHAacroVc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "638674378016-jk6omr5j0a24gof8i5ddbf0ega8up0bj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

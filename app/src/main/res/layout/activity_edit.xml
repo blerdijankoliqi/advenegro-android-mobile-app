@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditActivity"
+    android:background="#000">
+
+    <ImageView
+        android:id="@+id/menu_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/menu_image" />
+
+    <Button
+        android:id="@+id/create_button_addNew"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="165dp"
+        android:layout_marginLeft="165dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="158dp"
+        android:layout_marginRight="158dp"
+        android:background="@drawable/button_image"
+        android:text="Update"
+        android:textColor="#FFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.629"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LatitudeEditText_addNew" />
+
+    <ImageButton
+        android:id="@+id/logout_icon_button_addNew"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/ic_baseline_exit_to_app_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/title_maps"
+        android:layout_width="129dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginTop="24dp"
+        android:text="Edit"
+        android:textColor="#FFF"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/back_icon_button_addNew"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/back_icon_button_addNew"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="25dp"
+        app:layout_constraintStart_toStartOf="@+id/menu_image"
+        app:layout_constraintTop_toTopOf="@+id/menu_image"
+        android:background="@drawable/ic_baseline_arrow_back_ios_24"
+        tools:ignore="VectorDrawableCompat" />
+
+    <ImageView
+        android:id="@+id/selected_image_addNew"
+        android:layout_width="250dp"
+        android:layout_height="107dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/menu_image"
+        app:srcCompat="@android:drawable/screen_background_light" />
+
+    <Button
+        android:id="@+id/choose_image_button_addNew"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose Image"
+        android:background="@drawable/button_image"
+        android:textColor="#FFF"
+        app:layout_constraintBottom_toBottomOf="@+id/selected_image_addNew"
+        app:layout_constraintEnd_toEndOf="@+id/selected_image_addNew"
+        app:layout_constraintStart_toStartOf="@+id/selected_image_addNew"
+        app:layout_constraintTop_toTopOf="@+id/selected_image_addNew" />
+
+    <EditText
+        android:id="@+id/searchField"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="Title"
+        android:textColorHint="#FFF"
+        android:textColor="#FFF"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selected_image_addNew" />
+
+    <EditText
+        android:id="@+id/LocationEditText_addNew"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="Location"
+        android:textColorHint="#FFF"
+        android:textColor="#FFF"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchField" />
+
+    <EditText
+        android:id="@+id/ShortDescriptionEditText_addNew"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="Short Description"
+        android:textColorHint="#FFF"
+        android:textColor="#FFF"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LocationEditText_addNew" />
+
+    <EditText
+        android:id="@+id/AboutEditText_addNew"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="About"
+        android:textColorHint="#FFF"
+        android:textColor="#FFF"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ShortDescriptionEditText_addNew" />
+
+    <EditText
+        android:id="@+id/LongitudeEditText_addNew"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="Longitude"
+        android:textColorHint="#FFF"
+        android:textColor="#FFF"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AboutEditText_addNew" />
+
+    <EditText
+        android:id="@+id/LatitudeEditText_addNew"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="Latitude"
+        android:textColorHint="#FFF"
+        android:textColor="#FFF"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LongitudeEditText_addNew" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

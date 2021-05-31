@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:id="@+id/image_of_location_home"
+        android:layout_width="match_parent"
+        android:layout_height="104dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enjoyWithUs"
+        app:srcCompat="@drawable/ic_launcher_background"
+        tools:ignore="UnknownIdInLayout,VectorDrawableCompat"
+        tools:srcCompat="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/cityHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textStyle="bold"
+        android:textColor="#FFF"
+        android:textSize="15dp"
+        android:padding="3dp"
+        android:gravity="center"
+        android:background="#DDB140"
+        app:layout_constraintBottom_toBottomOf="@+id/image_of_location_home"
+        app:layout_constraintStart_toStartOf="@+id/image_of_location_home" />
+
+    <TextView
+        android:id="@+id/titleHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textStyle="bold"
+        android:textColor="#FFF"
+        android:textSize="30dp"
+        android:gravity="center"
+        android:padding="5dp"
+        android:background="#DDB140"
+        app:layout_constraintBottom_toBottomOf="@+id/image_of_location_home"
+        app:layout_constraintEnd_toEndOf="@+id/image_of_location_home"
+        app:layout_constraintStart_toStartOf="@+id/image_of_location_home"
+        app:layout_constraintTop_toTopOf="@+id/image_of_location_home" />
+
+    <Button
+        android:id="@+id/buttonGo"
+        android:layout_width="25dp"
+        android:gravity="center"
+        android:layout_height="104dp"
+        android:drawableLeft="@drawable/forward"
+        android:background="#DDB140"
+        app:layout_constraintBottom_toBottomOf="@+id/image_of_location_home"
+        app:layout_constraintEnd_toEndOf="@+id/image_of_location_home"
+        app:layout_constraintTop_toTopOf="@+id/image_of_location_home" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

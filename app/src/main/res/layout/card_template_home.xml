@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/background_imageView_dashboard"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/card_background"
+        tools:srcCompat="@drawable/card_background" />
+
+    <ImageView
+        android:id="@+id/image_of_location_home"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="@+id/background_imageView_dashboard"
+        app:layout_constraintStart_toStartOf="@+id/background_imageView_dashboard"
+        app:layout_constraintTop_toTopOf="@+id/background_imageView_dashboard"
+        app:srcCompat="@drawable/ic_launcher_background"
+        tools:ignore="VectorDrawableCompat"
+        tools:srcCompat="@drawable/ic_launcher_background" />
+
+    <TextView
+            android:id="@+id/name_of_location_explore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="27dp"
+            android:text="Durmitor"
+            android:textColor="#FFF"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/image_of_location_home"
+            app:layout_constraintTop_toTopOf="@+id/background_imageView_dashboard" />
+
+
+        <ImageView
+            android:id="@+id/location_icon_dashboard"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="3dp"
+            android:src="@drawable/ic_baseline_location_on_24"
+            app:layout_constraintStart_toEndOf="@+id/image_of_location_home"
+            app:layout_constraintTop_toBottomOf="@+id/name_of_location_explore" />
+
+        <TextView
+            android:id="@+id/location_textView_explore"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="3dp"
+            android:text="Zabljak"
+            android:textColor="#FFF"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/location_icon_dashboard"
+            app:layout_constraintTop_toBottomOf="@+id/name_of_location_explore" />
+
+        <ImageView
+            android:id="@+id/short_description_maps"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="3dp"
+            android:src="@drawable/ic_baseline_edit_24"
+            app:layout_constraintStart_toEndOf="@+id/image_of_location_home"
+            app:layout_constraintTop_toBottomOf="@+id/location_icon_dashboard" />
+
+        <TextView
+            android:id="@+id/short_description_textView_explore"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="3dp"
+            android:text="The biggest mountain."
+            android:textColor="#FFF"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/short_description_maps"
+            app:layout_constraintTop_toBottomOf="@+id/location_textView_explore" />
+
+    <Button
+        android:id="@+id/edit_button_dashboard"
+        android:layout_width="wrap_content"
+        android:layout_height="26dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#FFF"
+        android:text="See More"
+        android:textColor="#DDB140"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/background_imageView_dashboard" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
