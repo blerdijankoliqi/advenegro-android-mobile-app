@@ -2,11 +2,13 @@ package com.example.advenegro;
 
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -27,6 +29,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private TextView about;
     private TextView titleMapsActivity;
 
+    private Blog blog;
+
 
 
     @Override
@@ -43,10 +47,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         shortDescriptionText = (TextView) findViewById(R.id.short_description_textView_maps);
         about = (TextView) findViewById(R.id.about_textView_maps);
 
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        Intent intent = getIntent();
+        blog = (Blog) intent.getSerializableExtra("Model");
+
+        locationText.setText(blog.getCity());
+        Glide.with(getApplicationContext()).load(blog.getImage()).into(backgroundImage);
+        shortDescriptionText.setText(blog.getShortdescription());
+        about.setText(blog.getDescription());
+
+        float latitudeFloat = Float.parseFloat(blog.getLatitude());
+        float longitudeFloat = Float.parseFloat(blog.getLongitude());
+
 
     }
 
@@ -68,8 +85,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        Intent intent = getIntent();
+        blog = (Blog) intent.getSerializableExtra("Model");
+
+        float latitudeFloat = Float.parseFloat(blog.getLatitude());
+        float longitudeFloat = Float.parseFloat(blog.getLongitude());
+
+
+
+
         // Add a marker in Durmitor and move the camera
-        LatLng durmitor = new LatLng(43.1496, 19.0896);
+        LatLng durmitor = new LatLng(latitudeFloat,longitudeFloat );
         mMap.addMarker(new MarkerOptions().position(durmitor).title("Marker in Durmitor"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(durmitor));
     }

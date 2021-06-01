@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
@@ -38,7 +39,7 @@ public class HomeActivity extends AppCompatActivity {
     private ImageView footerImage;
     private TextView homeTitleLoginActivity;
 
-    private Button cardButton;
+
 
     private TextView numberOfActivities;
     private TextView enjoyWithUs;
@@ -50,6 +51,7 @@ public class HomeActivity extends AppCompatActivity {
     private CollectionReference blogsRef = FirebaseFirestore.getInstance().collection("blogs");
     private RecyclerView mFirestoreList;
     private FirestoreRecyclerAdapter adapter;
+    private FirestoreRecyclerAdapter adapter1;
     private Bitmap bitmap;
 
 
@@ -69,8 +71,10 @@ public class HomeActivity extends AppCompatActivity {
 
         numberOfActivities = (TextView) findViewById(R.id.numberOfActivities);
         enjoyWithUs = (TextView) findViewById(R.id.enjoyWithUs);
-        cardButton = (Button) findViewById(R.id.buttonGo);
+
         showAll = (Button) findViewById(R.id.showAll);
+
+
 
 
         mFirestoreList = findViewById(R.id.recyclerHome);
@@ -98,6 +102,13 @@ public class HomeActivity extends AppCompatActivity {
                     }
                 });
 
+
+
+
+
+
+
+
         loadData(query);
     }
 
@@ -119,6 +130,18 @@ public class HomeActivity extends AppCompatActivity {
                 holder.cardTitle.setText(model.getTitle());
                 holder.locationText.setText(model.getCity());
                 Glide.with(getApplicationContext()).load(model.getImage()).into(holder.cardImage);
+
+                holder.cardButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
+                        intent.putExtra("Model",model);
+                        startActivity(intent);
+                    }
+                });
+
+
             }
         };
         mFirestoreList.setHasFixedSize(true);
@@ -131,6 +154,7 @@ public class HomeActivity extends AppCompatActivity {
         private TextView cardTitle;
         private TextView locationText;
         private ImageView cardImage;
+        private Button cardButton;
 
 
         public BlogsViewHolder(@NonNull View itemView) {
@@ -139,6 +163,7 @@ public class HomeActivity extends AppCompatActivity {
             cardTitle = itemView.findViewById(R.id.titleHome);
             locationText = itemView.findViewById(R.id.cityHome);
             cardImage = itemView.findViewById(R.id.image_of_location_home);
+            cardButton = itemView.findViewById(R.id.buttonGo);
         }
     }
 
