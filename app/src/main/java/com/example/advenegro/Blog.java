@@ -1,6 +1,8 @@
 package com.example.advenegro;
 
-public class Blog {
+import java.io.Serializable;
+
+public class Blog implements Serializable {
 
     private String title;
     private String city;
@@ -65,9 +67,6 @@ public class Blog {
         this.city = city;
     }
 
-
-
-
     public String getLongitude() {
         return longitude;
     }
@@ -82,5 +81,15 @@ public class Blog {
 
     public void setLatitude(String latitude) {
         this.latitude = latitude;
+    }
+
+    public void reset(){
+        this.setDescription("");
+        this.setCity("");
+        this.setImage("");
+        this.setLatitude("");
+        this.setLongitude("");
+        this.setTitle("");
+        this.setShortdescription("");
     }
 }

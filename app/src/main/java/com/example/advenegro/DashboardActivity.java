@@ -2,6 +2,7 @@ package com.example.advenegro;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Layout;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -78,8 +80,6 @@ public class DashboardActivity extends AppCompatActivity {
 
         locationIcon = (ImageView) findViewById(R.id.location_icon_dashboard);
         shortDescriptionIcon = (ImageView) findViewById(R.id.short_description_maps);
-        deleteButton = (Button) findViewById(R.id.delete_button_dashboard);
-        editButton = (Button) findViewById(R.id.edit_button_dashboard);
 
         mFirestoreList = findViewById(R.id.firebaseList);
 
@@ -93,20 +93,54 @@ public class DashboardActivity extends AppCompatActivity {
 
 
         adapter = new FirestoreRecyclerAdapter<Blog, BlogsViewHolder>(options){
-          @NonNull
-          @Override
-          public BlogsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
+            @NonNull
+            @Override
+            public BlogsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
                 View view  = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_template,parent, false);
+                editButton = view.findViewById(R.id.edit_button_dashboard);
+                deleteButton = view.findViewById(R.id.delete_button_dashboard);
                 return new BlogsViewHolder(view);
-          }
+            }
 
-          @Override
+            @Override
             protected void onBindViewHolder(@NonNull BlogsViewHolder holder, int position, @NonNull Blog model){
                 holder.cardTitle.setText(model.getTitle());
                 holder.locationText.setText(model.getCity());
                 holder.shortDescriptionText.setText(model.getShortdescription());
                 Glide.with(getApplicationContext()).load(model.getImage()).into(holder.cardImage);
-          }
+                editButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+//                        Toast.makeText(DashboardActivity.this, "OH MAJKO DRAGA" + holder.getAdapterPosition(), Toast.LENGTH_SHORT).show();
+                        String documentID = getSnapshots().getSnapshot(holder.getAdapterPosition()).getId();
+                        Intent intent = new Intent(getApplicationContext(), EditActivity.class);
+                        intent.putExtra("ID",documentID);
+                        intent.putExtra("Model",model);
+                        startActivity(intent);
+
+                    }
+                });
+                deleteButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String documentID = getSnapshots().getSnapshot(holder.getAdapterPosition()).getId();
+                        blogsRef.document(documentID).delete()
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Toast.makeText(getApplicationContext(),"Blog is deleted!",Toast.LENGTH_SHORT).show();
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(getApplicationContext(),"There was a problem deleting this blog!",Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                    }
+                });
+
+            }
         };
         mFirestoreList.setHasFixedSize(true);
         mFirestoreList.setLayoutManager(new LinearLayoutManager(this));
