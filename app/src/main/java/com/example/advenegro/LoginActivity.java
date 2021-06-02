@@ -33,8 +33,8 @@ public class LoginActivity extends Activity {
     private ImageButton buttonExplore;
     private ImageView imageFooter;
     private TextView textLoginTitle;
-
-
+    private FirebaseUser firebaseUser;
+    private Button homeButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +50,7 @@ public class LoginActivity extends Activity {
         buttonAbout = (ImageButton) findViewById(R.id.imageButton2);
         buttonExplore = (ImageButton) findViewById(R.id.imageButton4);
         imageFooter = (ImageView) findViewById(R.id.footer_image);
-
+        homeButton = (Button) findViewById(R.id.home_button);
         //give me that firebase auth baby
         mAuth = FirebaseAuth.getInstance();
 
@@ -61,23 +61,47 @@ public class LoginActivity extends Activity {
                Login();
             }
         });
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
 
     private void Login(){
-        mAuth.signInWithEmailAndPassword(editTextEmail.getText().toString(),editTextPassword.getText().toString())
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(LoginActivity.this, "Login done", Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(LoginActivity.this,DashboardActivity.class);
-                            startActivity(intent);
-                        }else{
-                            Toast.makeText(LoginActivity.this, "Wrong credentials", Toast.LENGTH_LONG).show();
+        if(editTextEmail.getText().toString().length()==0 || editTextPassword.getText().toString().length()==0){
+            Toast.makeText(getApplicationContext(),"You can't leave fields empty!",Toast.LENGTH_SHORT).show();
+        }else {
+            mAuth.signInWithEmailAndPassword(editTextEmail.getText().toString(), editTextPassword.getText().toString())
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(LoginActivity.this, "Login done", Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+                                startActivity(intent);
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Wrong credentials", Toast.LENGTH_LONG).show();
+                            }
                         }
-                    }
-                });
+                    });
+        }
+    }
+    protected void onStart() {
+        super.onStart();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (firebaseUser != null) {
+            Intent intent = new Intent(this, DashboardActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    @Override
+    public void onBackPressed(){
+        //nista
     }
 }

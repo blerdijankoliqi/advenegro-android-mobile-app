@@ -53,9 +53,9 @@ public class DashboardActivity extends AppCompatActivity {
     private ImageView shortDescriptionIcon;
     private Button deleteButton;
     private Button editButton;
-
     private FirebaseAuth mAuth;
     private FirebaseFirestore firebaseFirestore;
+    private FirebaseUser firebaseUser;
 
     private CollectionReference blogsRef = FirebaseFirestore.getInstance().collection("blogs");
 
@@ -77,7 +77,6 @@ public class DashboardActivity extends AppCompatActivity {
         logoutButton = (ImageButton) findViewById(R.id.logout_icon_button_dashboard);
         addNewButton = (Button) findViewById(R.id.add_new_button_dashboard);
         cardBackgroundImage = (ImageView) findViewById(R.id.background_imageView_dashboard);
-
         locationIcon = (ImageView) findViewById(R.id.location_icon_dashboard);
         shortDescriptionIcon = (ImageView) findViewById(R.id.short_description_maps);
 
@@ -99,6 +98,15 @@ public class DashboardActivity extends AppCompatActivity {
             }
         });
 
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mAuth.signOut();
+                Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
+                Toast.makeText(getApplicationContext(),"Logged out",Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+            }
+        });
 
         adapter = new FirestoreRecyclerAdapter<Blog, BlogsViewHolder>(options){
             @NonNull
@@ -206,5 +214,11 @@ public class DashboardActivity extends AppCompatActivity {
     protected void onStart(){
         super.onStart();
         adapter.startListening();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (firebaseUser == null) {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            }
     }
+
 }

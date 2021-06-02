@@ -25,6 +25,8 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
@@ -46,7 +48,7 @@ public class EditActivity extends AppCompatActivity {
     private Map<String,Object> map;
     private ImageView menuImage;
     private ImageView footerImage;
-    private ImageButton logoutIconButton;
+    private ImageButton logoutButton;
     private ImageButton backIconButton;
     private TextView editTitle;
     private EditText editTextEditTitle;
@@ -67,13 +69,18 @@ public class EditActivity extends AppCompatActivity {
     private boolean indikatorPromjeneSlike = false;
     private Blog model;
     private String doc_id;
+    private FirebaseAuth mAuth;
+    private FirebaseUser firebaseUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
 
+        mAuth = FirebaseAuth.getInstance();
+
         menuImage = (ImageView) findViewById(R.id.menu_image);
-        logoutIconButton = (ImageButton) findViewById(R.id.logout_icon_button_addNew);
+        logoutButton = (ImageButton) findViewById(R.id.logout_icon_button_addNew);
         backIconButton = (ImageButton) findViewById(R.id.back_icon_button_addNew);
         editTitle = (TextView) findViewById(R.id.title_maps);
         editTextEditTitle = (EditText) findViewById(R.id.searchField);
@@ -118,6 +125,7 @@ public class EditActivity extends AppCompatActivity {
 //            }
 //        });
 //        thread.start();
+
         Glide.with(getApplicationContext()).load(model.getImage()).into(imageViewSelectedImage);
 
         backIconButton.setOnClickListener(new View.OnClickListener() {
@@ -146,6 +154,16 @@ public class EditActivity extends AppCompatActivity {
                 }else{
                     sendData();
                 }
+            }
+        });
+
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mAuth.signOut();
+                Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
+                Toast.makeText(getApplicationContext(),"Logged out",Toast.LENGTH_SHORT).show();
+                startActivity(intent);
             }
         });
 
@@ -264,6 +282,14 @@ public class EditActivity extends AppCompatActivity {
             });
         }
 
+    }
+    protected void onStart() {
+        super.onStart();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (firebaseUser == null) {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
     }
 
 
