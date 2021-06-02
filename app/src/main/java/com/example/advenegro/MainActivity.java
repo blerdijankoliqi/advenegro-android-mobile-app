@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), LoginActivity.class);
+                Intent myIntent = new Intent(view.getContext(), DashboardActivity.class);
                 startActivity(myIntent);
 
                 //test za branch

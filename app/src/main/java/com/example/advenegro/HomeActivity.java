@@ -80,6 +80,32 @@ public class HomeActivity extends AppCompatActivity {
         mFirestoreList = findViewById(R.id.recyclerHome);
         mAuth = FirebaseAuth.getInstance();
 
+        loginIconButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        exploreButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this, ExploreActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        showAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this, ExploreActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
         Query query = blogsRef.orderBy("description", Query.Direction.DESCENDING).limit(2);
 
         blogsRef.get()

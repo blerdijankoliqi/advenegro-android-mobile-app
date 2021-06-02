@@ -101,6 +101,14 @@ public class AddNewActivity extends AppCompatActivity {
             }
         });
 
+        backIconButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AddNewActivity.this, DashboardActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data){

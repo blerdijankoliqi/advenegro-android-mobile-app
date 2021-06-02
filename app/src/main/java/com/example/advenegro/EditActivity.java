@@ -120,6 +120,13 @@ public class EditActivity extends AppCompatActivity {
 //        thread.start();
         Glide.with(getApplicationContext()).load(model.getImage()).into(imageViewSelectedImage);
 
+        backIconButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(EditActivity.this, DashboardActivity.class);
+                startActivity(intent);
+            }
+        });
 
         //choose image
 

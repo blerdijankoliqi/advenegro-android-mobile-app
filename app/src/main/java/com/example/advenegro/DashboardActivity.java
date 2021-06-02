@@ -91,6 +91,14 @@ public class DashboardActivity extends AppCompatActivity {
                 .setQuery(query,Blog.class)
                 .build();
 
+        addNewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DashboardActivity.this, AddNewActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         adapter = new FirestoreRecyclerAdapter<Blog, BlogsViewHolder>(options){
             @NonNull

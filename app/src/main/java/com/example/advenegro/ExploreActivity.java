@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -90,6 +91,22 @@ public class ExploreActivity extends AppCompatActivity {
         mFirestoreList = findViewById(R.id.recycleViewExplore);
         mAuth = FirebaseAuth.getInstance();
 
+
+        loginIconButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ExploreActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ExploreActivity.this, HomeActivity.class);
+                startActivity(intent);
+            }
+        });
 
         allFilterButton.setOnClickListener(new View.OnClickListener() {
             @Override
