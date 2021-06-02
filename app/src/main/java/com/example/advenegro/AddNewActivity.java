@@ -30,6 +30,8 @@ import android.widget.Toast;
 //import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
@@ -46,7 +48,7 @@ public class AddNewActivity extends AppCompatActivity {
 
     private ImageView menuImage;
     private ImageView footerImage;
-    private ImageButton logoutIconButton;
+    private ImageButton logoutButton;
     private ImageButton backIconButton;
     private TextView textViewTitle;
     private EditText editTextTitle;
@@ -66,6 +68,9 @@ public class AddNewActivity extends AppCompatActivity {
     private Bitmap bitmap;
     private FirebaseStorage firebaseStorage;
     private StorageReference storageReference;
+    private FirebaseAuth mAuth;
+    private FirebaseUser firebaseUser;
+
     public static String url;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +78,7 @@ public class AddNewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_new);
 
         menuImage = (ImageView) findViewById(R.id.menu_image);
-        logoutIconButton = (ImageButton) findViewById(R.id.logout_icon_button_addNew);
+        logoutButton = (ImageButton) findViewById(R.id.logout_icon_button_addNew);
         backIconButton = (ImageButton) findViewById(R.id.back_icon_button_addNew);
         textViewTitle = (TextView) findViewById(R.id.title_maps);
         editTextTitle = (EditText) findViewById(R.id.searchField);
@@ -87,6 +92,7 @@ public class AddNewActivity extends AppCompatActivity {
         buttonChooseImage = (Button) findViewById(R.id.choose_image_button_addNew);
         footerImage = (ImageView) findViewById(R.id.footer_image);
         buttonChooseImage = (Button) findViewById(R.id.choose_image_button_addNew);
+        mAuth = FirebaseAuth.getInstance();
 
         buttonChooseImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,6 +111,15 @@ public class AddNewActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AddNewActivity.this, DashboardActivity.class);
+                startActivity(intent);
+            }
+        });
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mAuth.signOut();
+                Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
+                Toast.makeText(getApplicationContext(),"Logged out",Toast.LENGTH_SHORT).show();
                 startActivity(intent);
             }
         });
@@ -203,5 +218,13 @@ public class AddNewActivity extends AppCompatActivity {
             });
         }
 
+    }
+    protected void onStart() {
+        super.onStart();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (firebaseUser == null) {
+            Intent intent = new Intent(this,LoginActivity.class);
+            startActivity(intent);
+        }
     }
 }
